@@ -1,8 +1,19 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Button, Text } from 'react-native';
 
-export default function home() {
-    return (
-        <View />
-    )
+import { DrawerActions } from '@react-navigation/native';
+import Header from '../header/index'
+
+
+
+class home extends React.Component {
+    render() {
+        return (
+
+            <Text>Home</Text>
+        );
+    }
 }
+
+
+export default home;

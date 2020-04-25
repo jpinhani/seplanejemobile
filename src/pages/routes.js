@@ -1,7 +1,7 @@
 import React from 'react';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import Header from './header/index'
 import Home from './home';
@@ -9,55 +9,115 @@ import Categoria from './categoria';
 import Cartao from './cartao';
 import Conta from './conta';
 import Visao from './visao';
-import { StyleSheet } from 'react-native';
+
+// import Icon from 'react-native-vector-icons/Ionicons';
+import { Feather } from '@expo/vector-icons';
+
 
 const AppDrawer = createDrawerNavigator();
 
 export default function Routes() {
-    return (
-        <NavigationContainer>
-            <Header />
 
+    return (
+        <NavigationContainer  >
+            <Header />
             <AppDrawer.Navigator
                 drawerContentOptions={{
                     activeTintColor: '#fff',
                     activeBackgroundColor: '#81d6f3',
-                    inactiveBackgroundColor: '#b6bec5',
+                    // inactiveBackgroundColor: '#fff',
                     itemStyle: {
-                        marginVertical: 2, borderWidth: 1, /* backgroundColor: '#81d6f3', */ borderColor: 'white'
+                        marginVertical: 5,
+                        // borderColor: 'white',
+                        // borderRadius: 20,
                     },
                     labelStyle: {
                         fontWeight: 'bold',
-                        paddingLeft: '25%',
-                    }
+                        borderBottomWidth: 1,
+                        // paddingLeft: '25%',
+                        fontSize: 18,
+                    },
                 }}
                 drawerStyle={{
-                    backgroundColor: '#dde2eb',
+                    // backgroundColor: '#BBD1E6',
                     width: 240,
                 }}
             >
+                <AppDrawer.Screen name='Home' component={Home}
+                    options={{
+                        drawerIcon: config =>
+                            // <Icon size={23} name='home' />
+                            <Feather name="home" size={40} color="blue" />
+                    }} />
+                <AppDrawer.Screen name='Categoria' component={Categoria}
+                    options={{
+                        drawerIcon: config =>
+                            // <Icon size={23} name='home' />
+                            <Feather name="flag" size={40} color="orange" />
+                    }} />
+                <AppDrawer.Screen name='Cartão' component={Cartao}
+                    options={{
+                        drawerIcon: config =>
+                            // <Icon size={23} name='home' />
+                            <Feather name="credit-card" size={40} color="black" />
+                    }} />
+                <AppDrawer.Screen name='Conta' component={Conta}
+                    options={{
+                        drawerIcon: config =>
+                            // <Icon size={23} name='home' />
+                            <Feather name="check-square" size={40} color="orange" />
+                    }} />
+                <AppDrawer.Screen name='Visao' component={Visao}
+                    options={{
+                        drawerIcon: config =>
+                            // <Icon size={23} name='home' />
+                            <Feather name="calendar" size={40} color="black" />
+                    }} />
+                <AppDrawer.Screen name='Meta Despesa' component={Visao}
+                    options={{
+                        drawerIcon: config =>
+                            // <Icon size={23} name='home' />
+                            <Feather name="thumbs-down" size={40} color="red" />
+                    }} />
+                <AppDrawer.Screen name='Meta Receita' component={Visao}
+                    options={{
+                        drawerIcon: config =>
+                            // <Icon size={23} name='home' />
+                            <Feather name="thumbs-up" size={40} color="blue" />
+                    }} />
+                <AppDrawer.Screen name='Despesa' component={Visao}
+                    options={{
+                        drawerIcon: config =>
+                            // <Icon size={23} name='home' />
+                            <Feather name="trending-down" size={40} color="red" />
+                    }} />
+                <AppDrawer.Screen name='Fatura' component={Visao}
+                    options={{
+                        drawerIcon: config =>
+                            // <Icon size={23} name='home' />
+                            <Feather name="credit-card" size={40} color="red" />
+                    }} />
+                <AppDrawer.Screen name='Receita' component={Visao}
+                    options={{
+                        drawerIcon: config =>
+                            // <Icon size={23} name='home' />
+                            <Feather name="trending-up" size={40} color="blue" />
+                    }} />
+                <AppDrawer.Screen name='Transferencias' component={Visao}
+                    options={{
+                        drawerIcon: config =>
+                            // <Icon size={23} name='home' />
+                            <Feather name="repeat" size={40} color="black" />
+                    }} />
+                <AppDrawer.Screen name='Resumo' component={Visao} options={{
+                    drawerIcon: config =>
+                        // <Icon size={23} name='home' />
+                        <Feather name="activity" size={40} color="blue" />
+                }} />
 
-                <AppDrawer.Screen name='Home' component={Home} />
-                <AppDrawer.Screen name='Categoria' component={Categoria} />
-                <AppDrawer.Screen name='Cartão' component={Cartao} />
-                <AppDrawer.Screen name='Conta' component={Conta} />
-                <AppDrawer.Screen name='Visao' component={Visao} />
             </AppDrawer.Navigator>
 
         </NavigationContainer >
 
     )
 }
-
-const styles = StyleSheet.create({
-    div: {
-        alignItems: 'center',
-        marginTop: 0,
-        paddingTop: 25,
-    },
-    menu: {
-        backgroundColor: '#98FB98',
-        fontWeight: 'bold',
-        color: 'red',
-    },
-})
