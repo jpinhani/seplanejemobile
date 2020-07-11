@@ -1,16 +1,25 @@
 import React from 'react';
-import { Button, Text } from 'react-native';
+import { Text, View } from 'react-native';
 
+import { AntDesign } from '@expo/vector-icons';
 import { DrawerActions } from '@react-navigation/native';
-import Header from '../header/index'
+
 
 
 
 class home extends React.Component {
     render() {
         return (
+            <>
+                {/* <Header /> */}
+                <View style={{ width: '20%', paddingLeft: 15 }}>
 
-            <Text>Home</Text>
+                    <AntDesign name="menufold" onPress={() => { this.props.navigation.dispatch(DrawerActions.toggleDrawer()); }}
+                        size={50} color="black" />
+
+                    <Text>Home</Text>
+                </View>
+            </>
         );
     }
 }
