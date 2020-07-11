@@ -33,6 +33,7 @@ function drawerMain() {
             <Header />
             <AppDrawer.Navigator
                 edgeWidth={250}
+                initialRouteName='Cartão'
                 drawerType='slide'
                 drawerContentOptions={{
                     activeTintColor: '#fff',
@@ -156,15 +157,16 @@ export default (props) => {
     const dispatch = useDispatch();
 
     const isloading = useCallback(async () => {
-        const verify = await !AsyncStorage.getItem('token').then(response => response)
+        const verify = await AsyncStorage.getItem('token').then(response => response)
 
         dispatch({
             type: 'ISLOGED',
-            payload: verify
+            payload: verify === null ? false : true
 
         })
 
     }, [dispatch])
+
 
 
     useEffect(() => {
@@ -175,7 +177,7 @@ export default (props) => {
         <NavigationContainer>
             <Stack.Navigator>
                 {/* <Stack.Screen name='loading' component={Loading} options={{ headerShown: false }} /> */}
-                {isloged === true ? (
+                {(isloged) ? (
                     <Stack.Screen name='drawerMain' component={drawerMain} options={{ headerShown: false }} />
                 ) :
                     (

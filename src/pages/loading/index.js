@@ -53,7 +53,8 @@ export default () => {
             const token = response.data.token
             const userId = response.data.user
 
-            await AsyncStorage.multiSet([['token', token], ['userId', userId.toString()]])
+            await AsyncStorage.setItem('token', token);
+            await AsyncStorage.setItem('userId', userId.toString());
 
             dispatch({
                 type: 'ISLOGED',
@@ -61,6 +62,7 @@ export default () => {
             })
 
         }
+
         setLoadingData(false);
     }
 

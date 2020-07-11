@@ -2,9 +2,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux'
 import DatePicker from 'react-native-datepicker';
-import { TextInput, Button } from 'react-native-paper';
+import { TextInput, Button, Divider } from 'react-native-paper';
 import { TextInputMask } from 'react-native-masked-text';
-import { View, Modal, TouchableHighlight, Text, ActivityIndicator } from 'react-native';
+import { View, Modal, TouchableHighlight, Text } from 'react-native';
 import { AntDesign, Feather } from '@expo/vector-icons';
 import { config, userID } from './../../components/auth'
 import api from '../../services/api';
@@ -22,10 +22,6 @@ class MyComponent extends React.Component {
         saldo: '0',
         loadingData: false
     };
-
-    setModalVisible = (visible) => {
-        this.setState({ modalVisible: visible });
-    }
 
 
     async handleSubmit() {
@@ -85,12 +81,14 @@ class MyComponent extends React.Component {
                                     fontSize: 28,
                                     color: 'white',
                                 }}>Planeje</Text></Text>
-                                <Text style={{
-                                    fontSize: 20,
-                                    fontWeight: 'bold',
-                                    marginTop: 15
-                                }}>Nova Conta</Text>
+
                             </View>
+                            <Text style={{
+                                fontSize: 20,
+                                fontWeight: 'bold',
+                                marginTop: 15
+                            }}>Nova Conta</Text>
+                            <Divider theme="dark" style={{ padding: 5 }} />
                             <LoadingData data={this.state.loadingData} />
                             <View style={style.icon}>
                                 <View style={{ width: '8%' }}>
@@ -110,6 +108,7 @@ class MyComponent extends React.Component {
                                 fontWeight: 'bold',
                                 marginTop: 15
                             }}>Data Inicial</Text>
+                            <Divider theme="dark" style={{ padding: 5 }} />
                             <DatePicker
                                 style={style.datainsert}
                                 date={this.state.date}
@@ -147,7 +146,7 @@ class MyComponent extends React.Component {
                                 fontWeight: 'bold',
                                 marginTop: 35
                             }}>Saldo Inicial</Text>
-
+                            <Divider theme="dark" style={{ padding: 5 }} />
                             <View style={style.icon}>
                                 <View style={{ width: '8%' }}>
                                     <Feather name="dollar-sign" size={30} color="black" />

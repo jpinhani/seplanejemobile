@@ -3,15 +3,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { config, userID } from './../../components/auth'
 import api from '../../services/api'
 
-import { View, FlatList, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, FlatList, Text, TouchableOpacity } from 'react-native';
 import moment from 'moment';
-import { Searchbar, Dialog, Button, Portal, Provider } from 'react-native-paper';
+import { Searchbar, Dialog, Button, Portal, Provider, Divider } from 'react-native-paper';
 import { DrawerActions } from '@react-navigation/native';
 import { Feather, AntDesign } from '@expo/vector-icons';
 
-import LoadingData from './../../components/loadingData'
-import InsertConta from './insert'
-import UpdateConta from './update'
+import LoadingData from './../../components/loadingData';
+import InsertConta from './insert';
+import UpdateConta from './update';
 
 import SearchFilter from '../../components/searchList/'
 
@@ -78,23 +78,23 @@ export default (props) => {
                 />
             </View>
             <LoadingData data={loadingData} />
-            {/* <View style={[styles.containerloading, styles.horizontal]}>
-                <ActivityIndicator size="small" color='blue' animating={loadingData} />
-            </View> */}
             <FlatList style={styles.container}
                 data={SearchFilter(contaStore, ['DESCR_CONTA'], search)}
                 keyExtractor={contaStore => String(contaStore.ID)}
                 renderItem={({ item: conta }) => (
                     <View style={styles.itens}>
                         <Text style={styles.type}>Conta:</Text>
+                        <Divider theme="dark" style={{ padding: 5 }} />
                         <Text style={styles.value}>{conta.DESCR_CONTA}</Text>
                         <View style={styles.details}>
                             <View>
                                 <Text style={styles.type}>Data Inicio:</Text>
+                                <Divider theme="dark" style={{ padding: 5 }} />
                                 <Text style={styles.value}>{moment(conta.DTSALDO).format("DD/MM/YYYY")}</Text>
                             </View>
                             <View>
                                 <Text style={styles.type}>Saldo Inicial:</Text>
+                                <Divider theme="dark" style={{ padding: 5 }} />
                                 <Text style={styles.value}>{formataDinheiro(conta.SALDO)}</Text>
                             </View>
                         </View>

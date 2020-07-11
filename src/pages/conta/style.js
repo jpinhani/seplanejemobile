@@ -11,7 +11,7 @@ export default StyleSheet.create({
         // backgroundColor: '#DCDCDC',
         backgroundColor: 'white',
         padding: 8,
-        marginVertical: 4,
+        marginVertical: 6,
         borderRadius: 10,
     },
     type: {
@@ -19,7 +19,7 @@ export default StyleSheet.create({
         fontWeight: 'bold',
     },
     value: {
-        fontSize: 18,
+        fontSize: 20,
         paddingVertical: 1,
         color: 'blue',
     },
