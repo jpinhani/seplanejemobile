@@ -10,16 +10,18 @@ export default StyleSheet.create({
     itens: {
         // backgroundColor: '#DCDCDC',
         backgroundColor: 'white',
+        flexDirection: 'row',
         padding: 8,
         marginVertical: 6,
         borderRadius: 10,
     },
     type: {
-        fontSize: 16,
+        fontSize: 14,
+        paddingLeft: 6,
         fontWeight: 'bold',
     },
     value: {
-        fontSize: 20,
+        fontSize: 16,
         paddingVertical: 1,
         color: 'blue',
     },
@@ -39,15 +41,17 @@ export default StyleSheet.create({
     },
     detailButton: {
         paddingTop: 10,
-        width: '100%',
-        flexDirection: 'row',
+        width: '20%',
+        flexDirection: 'column',
         justifyContent: 'space-evenly'
     },
     detailButtonGrid: {
         width: '100%',
-        flexDirection: 'row',
+        padding: 10,
+        flexDirection: 'column',
         justifyContent: 'space-evenly',
-        paddingHorizontal: 10,
+
+        // paddingHorizontal: 10,
         // backgroundColor: 'red',
     },
     detailButtonText: {

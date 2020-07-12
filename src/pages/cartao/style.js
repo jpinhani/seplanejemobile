@@ -26,12 +26,12 @@ export default StyleSheet.create({
         flexDirection: 'row'
     },
     flatContainerTopics: {
-        fontSize: 16,
+        fontSize: 14,
         paddingLeft: 10,
         fontWeight: 'bold',
     },
     flatContainerItens: {
-        fontSize: 20,
+        fontSize: 16,
         paddingVertical: 1,
         color: 'blue',
         paddingLeft: 15

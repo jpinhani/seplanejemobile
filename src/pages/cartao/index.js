@@ -48,10 +48,13 @@ export default (props) => {
     async function deleteCartao(cartao) {
         const token = await config();
         const response = await api.delete(`/api/cartoes/${cartao.ID}`, token)
-        if (response.status === 200) {
-            loadCartao()
-            setVisible(false)
-        }
+
+        setVisible(false)
+
+        if (response.status === 200)
+            return loadCartao()
+
+        alert('Foram Encontrados problemas ao tentar excluir o cartão de créditp, as ações não serão salvas')
     }
 
     useEffect(() => {

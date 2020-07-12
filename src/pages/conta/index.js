@@ -83,39 +83,47 @@ export default (props) => {
                 keyExtractor={contaStore => String(contaStore.ID)}
                 renderItem={({ item: conta }) => (
                     <View style={styles.itens}>
-                        <Text style={styles.type}>Conta:</Text>
-                        <Divider theme="dark" style={{ padding: 5 }} />
-                        <Text style={styles.value}>{conta.DESCR_CONTA}</Text>
-                        <View style={styles.details}>
-                            <View>
-                                <Text style={styles.type}>Data Inicio:</Text>
-                                <Divider theme="dark" style={{ padding: 5 }} />
+                        <View style={{ width: '80%' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <Feather name="check-square"
+                                    size={30} color="black" />
+                                <Text style={styles.type}>Conta:</Text>
+                            </View>
+                            <Text style={styles.value}>{conta.DESCR_CONTA}</Text>
+                            <Divider style={{ padding: 3 }} />
+                            <View style={{ flexDirection: 'row' }}>
+                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                    <Feather name="calendar"
+                                        size={30} color="black" />
+                                    <Text style={styles.type}>Data Inicio:</Text>
+                                </View>
                                 <Text style={styles.value}>{moment(conta.DTSALDO).format("DD/MM/YYYY")}</Text>
                             </View>
-                            <View>
-                                <Text style={styles.type}>Saldo Inicial:</Text>
-                                <Divider theme="dark" style={{ padding: 5 }} />
+                            <Divider style={{ padding: 3 }} />
+                            <View style={{ flexDirection: 'row' }}>
+                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                    <Feather name="dollar-sign"
+                                        size={30} color="black" />
+                                    <Text style={styles.type}>Saldo Inicial:</Text>
+                                </View>
                                 <Text style={styles.value}>{formataDinheiro(conta.SALDO)}</Text>
                             </View>
+                            <Divider style={{ padding: 3 }} />
                         </View>
-                        <View style={styles.detailButton}>
-                            <View style={styles.detailButtonGrid}>
+                        <View style={styles.detailButtonGrid}>
 
-                                <UpdateConta data={conta} />
+                            <UpdateConta data={conta} />
 
-                                <TouchableOpacity
-                                    onPress={() => {
-                                        setListConta(conta)
-                                        setVisible(true)
-                                    }}
-                                >
-                                    <Feather name="delete" size={35} color="#E02041" />
-                                </TouchableOpacity>
-
-                            </View>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    setListConta(conta)
+                                    setVisible(true)
+                                }}
+                            >
+                                <Feather name="delete" size={35} color="#E02041" />
+                            </TouchableOpacity>
 
                         </View>
-
                     </View>)}
             />
             <Provider>

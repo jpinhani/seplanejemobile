@@ -33,7 +33,7 @@ function drawerMain() {
             <Header />
             <AppDrawer.Navigator
                 edgeWidth={250}
-                initialRouteName='Cartão'
+                // initialRouteName='Categoria'
                 drawerType='slide'
                 drawerContentOptions={{
                     activeTintColor: '#fff',
