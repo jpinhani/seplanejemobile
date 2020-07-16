@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import {View } from 'react-native';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Feather } from '@expo/vector-icons';
@@ -14,7 +14,7 @@ import Cartao from './cartao';
 import Conta from './conta';
 import Visao from './visao';
 import Loading from './loading';
-import loading from './loading';
+// import loading from './loading';
 
 
 const AppDrawer = createDrawerNavigator();
