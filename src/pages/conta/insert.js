@@ -26,18 +26,9 @@ export default (props) => {
     const [loadingData, setLoadingData] = useState(false);
     const [isDatePickerVisible, setisDatePickerVisible] = useState(false);
 
-    // const colorScheme = Appearance.getColorScheme();
+    
     const dispatch = useDispatch();
 
-    // let colorScheme = useColorScheme();
-
-    // function teste() {
-    //     let colorScheme = useColorScheme();
-    //     return colorScheme
-    // }
-    useEffect(() => {
-        console.log('teste', useColorScheme)
-    }, [])
 
     async function handleSubmit() {
         setLoadingData(true);
@@ -85,6 +76,8 @@ export default (props) => {
 
     function handleConfirm(date) {
         console.warn("A date has been picked: ", date);
+        const data = moment(date).format("DD-MM-YYYY")
+        setDate(data);
         hideDatePicker();
     };
 
@@ -143,11 +136,17 @@ export default (props) => {
                         }}>Data Inicial</Text>
                         <Divider theme="dark" style={{ padding: 5 }} />
 
-
                         <View>
-                            <Button title="Show Date Picker" onPress={() => showDatePicker()} />
+                            <TextInput
+                                    style={style.contaInput}
+                                    value={date}
+                                    placeholderTextColor='black'
+                                    label='Informe a data inicial'
+                                    onTouchStart={()=> showDatePicker()}
+                                    editable={false}/>
+
                             <DateTimePickerModal
-                                // isDarkModeEnabled={colorScheme === 'dark' ? true : false}
+
                                 isVisible={isDatePickerVisible}
                                 textColor='black'
                                 display='calendar'
@@ -156,38 +155,6 @@ export default (props) => {
                                 onCancel={() => hideDatePicker()}
                             />
                         </View>
-                        {/* 
-                            <DatePicker
-                                style={style.datainsert}
-                                date={this.state.date}
-                                mode="date"
-                                placeholder="Data Inicio"
-                                format="DD-MM-YYYY"
-                                confirmBtnText="Confirm"
-                                cancelBtnText="Cancel"
-                                customStyles={{
-                                    dateIcon: {
-                                        position: 'absolute',
-                                        left: 0,
-                                        top: 10,
-                                        marginLeft: 0
-                                    },
-                                    dateInput: {
-                                        backgroundColor: '#fff',
-                                        marginTop: 20,
-                                        marginLeft: 36,
-                                        height: 60,
-
-                                    },
-                                    dateText: {
-                                        fontSize: 20,
-                                        paddingLeft: 15,
-                                        width: '100%',
-                                        textAlign: 'left'
-                                    }
-                                }}
-                                onDateChange={(date) => { this.setState({ date: date }) }}
-                            /> */}
 
                         <Text style={{
                             fontSize: 20,
