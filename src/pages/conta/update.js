@@ -1,55 +1,50 @@
 
-import * as React from 'react';
-import { connect } from 'react-redux'
-import DatePicker from 'react-native-datepicker';
+import  React,{useState} from 'react';
+import { useDispatch } from 'react-redux';
+
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { TextInput, Button, Divider } from 'react-native-paper';
 import { View, Modal, TouchableHighlight, Text } from 'react-native';
-import { Feather } from '@expo/vector-icons';
-import { TextInputMask } from 'react-native-masked-text'
+import { Feather,AntDesign } from '@expo/vector-icons';
+import { TextInputMask } from 'react-native-masked-text';
 
 
 import moment from 'moment';
 import { config, userID } from './../../components/auth'
 import api from '../../services/api'
-import { listConta } from '../../store/actions/actionConta'
+
 import LoadingData from './../../components/loadingData';
 import style from './style';
 
-class MyComponent extends React.Component {
-    constructor(props) {
-        super(props)
+export default (props) => {
+    
+        const dispatch = useDispatch();
+        const [modalVisible,setModalVisible] = useState(false);
+        const [conta,setConta] = useState(props.data.DESCR_CONTA);
+        const [date,setDate] = useState(moment(props.data.DTSALDO).format("DD-MM-YYYY"));
+        const [isDatePickerVisible, setisDatePickerVisible] = useState(false);
+        const [saldo,setSaldo] =  useState(props.data.SALDO);
+        const [loadingData,setLoadingData] =  useState(false);
+        
 
-        this.state = {
-            modalVisible: false,
-            conta: this.props.data.DESCR_CONTA,
-            date: moment(this.props.data.DTSALDO, "YYYY-MM-DD"),
-            saldo: this.props.data.SALDO,
-            loadingData: false
-        };
-
-    }
-
-    setModalVisible = (visible) => {
-        this.setState({ modalVisible: visible });
-    }
-
-
-    async handleSubmit() {
-        this.setState({ ...this.state, loadingData: true });
+    async function handleSubmit() {
+        setLoadingData(true)
+    
         const idUser = await userID();
         const token = await config();
-        const dtsaldo = moment(this.state.date).format("YYYY-MM-DD")
-        const sd = typeof this.state.saldo === 'number'
-            ? this.state.saldo :
-            (this.state.saldo).replace('R$ ', '').replace('.', '').replace('.', '').replace('.', '').replace(',', '.')
-        const body = {
+        const dtsaldo = moment(date, "DD-MM-YYYY").format("YYYY-MM-DD")
+        const sd = typeof saldo === 'number'
+            ? saldo :
+            (saldo).replace('R$ ', '').replace('.', '').replace('.', '').replace('.', '').replace(',', '.')
+        
+            const body = {
             idUser: idUser,
-            id: this.props.data.ID,
-            descrConta: this.state.conta,
+            id: props.data.ID,
+            descrConta: conta,
             saldo: sd,
             data: dtsaldo,
             status: "Ativo"
-        }
+            }  
 
         if (body.descrConta) {
             const response = await api.put(`/api/contas/${body.id}`, body, token)
@@ -57,22 +52,36 @@ class MyComponent extends React.Component {
             if (response.status === 200) {
                 alert('Conta Atualizada com Sucesso')
                 const response = await api.get(`/api/contas/${idUser}`, token)
-                this.props.listConta(response.data)
-                this.setState({ ...this.state, modalVisible: false })
+
+                dispatch({
+                    type: "LIST_CONTA",
+                    payload: response.data
+                });
+
+                setModalVisible(false)
             }
+
         } else {
             alert('Informe a Conta')
         }
-        this.setState({ ...this.state, loadingData: false });
+        setModalVisible(false)
+        setLoadingData(false)
     }
 
-    render() {
-        const { modalVisible } = this.state;
-        return (
+    const hideDatePicker = () => {
+        setisDatePickerVisible(false)
+    };
+
+    const handleConfirm = (date) => {
+        setisDatePickerVisible(false)
+        setDate(moment(date).format("DD-MM-YYYY"));
+    };
+
+    return (
             <View>
                 <TouchableHighlight
                     onPress={() => {
-                        this.setState({ ...this.state, modalVisible: true });
+                        setModalVisible(true)
                     }}
                 >
                     <Feather name="edit" size={35} color="blue" />
@@ -102,7 +111,7 @@ class MyComponent extends React.Component {
                                 marginTop: 15
                             }}>Editar Conta</Text>
                             <Divider theme="dark" style={{ padding: 5 }} />
-                            <LoadingData data={this.state.loadingData} />
+                            <LoadingData data={loadingData} />
                             <View style={style.icon}>
                                 <View style={{ width: '8%' }}>
                                     <Feather name="check-square" size={30} color="black" />
@@ -110,10 +119,10 @@ class MyComponent extends React.Component {
                                 <View style={{ width: '90%' }}>
                                     <TextInput
                                         style={style.contaInput}
-                                        value={this.state.conta}
+                                        value={conta}
                                         placeholderTextColor='black'
                                         label='Informe a Conta'
-                                        onChangeText={valor => this.setState({ ...this.state, conta: valor })} />
+                                        onChangeText={valor => setConta(valor) } />
                                 </View>
                             </View>
                             <Text style={{
@@ -122,37 +131,30 @@ class MyComponent extends React.Component {
                                 marginTop: 15
                             }}>Data Inicial</Text>
                             <Divider theme="dark" style={{ padding: 5 }} />
-                            <DatePicker
-                                style={style.datainsert}
-                                date={this.state.date}
+                            <TouchableHighlight
+                                onPress={()=> setisDatePickerVisible(true)} 
+                             >
+                               <View style={style.icon}>
+                                 <View style={{ width: '8%' }}>
+                                    <AntDesign name="calendar" size={30} color="black" />
+                                 </View>
+                                <View style={{ width: '90%' }}>
+                                    <TextInput
+                                    style={style.contaInput}
+                                    placeholder="Informe a Data Inicial do Saldo"
+                                    value={date}
+                                    editable={false}
+                                    onTouchStart={()=> setisDatePickerVisible(true)}
+                                    />
+                                </View>
+                               </View>
+                         </TouchableHighlight>                           
+                            <DateTimePickerModal
+                                isVisible={isDatePickerVisible}
+                                textColor='black'
                                 mode="date"
-                                placeholder="Data Inicio"
-                                format="DD-MM-YYYY"
-                                confirmBtnText="Confirm"
-                                cancelBtnText="Cancel"
-                                customStyles={{
-                                    dateIcon: {
-                                        position: 'absolute',
-                                        left: 0,
-                                        top: 10,
-                                        marginLeft: 0
-                                    },
-                                    dateInput: {
-                                        backgroundColor: '#fff',
-                                        marginTop: 20,
-                                        marginLeft: 36,
-                                        height: 60,
-
-                                    },
-                                    dateText: {
-                                        fontSize: 20,
-                                        paddingLeft: 15,
-                                        width: '100%',
-                                        textAlign: 'left'
-
-                                    }
-                                }}
-                                onDateChange={(date) => { this.setState({ date: date }) }}
+                                onConfirm={handleConfirm}
+                                onCancel={hideDatePicker}
                             />
 
                             <Text style={{
@@ -180,11 +182,9 @@ class MyComponent extends React.Component {
                                             unit: 'R$ ',
                                             suffixUnit: ''
                                         }}
-                                        value={this.state.saldo}
-                                        onChangeText={text => {
-                                            this.setState({
-                                                saldo: text
-                                            })
+                                        value={saldo}
+                                        onChangeText={text => { setSaldo(text)
+                                            
                                         }}
                                     />
                                 </View>
@@ -196,14 +196,17 @@ class MyComponent extends React.Component {
                                     icon='send'
                                     color='blue'
                                     contentStyle={{ height: 50 }}
-                                    onPress={() => this.handleSubmit()}>Alterar</Button>
+                                    onPress={() => handleSubmit()}>Alterar</Button>
                                 <Button
                                     style={style.bcancelar}
                                     icon='logout'
                                     mode='outlined'
                                     color='blue'
                                     contentStyle={{ height: 50 }}
-                                    onPress={() => this.setState({ ...this.state, modalVisible: false })}>Sair</Button>
+                                    onPress={() => 
+                                     setModalVisible(false)
+                                    }
+                                    >Sair</Button>
                             </View>
                         </View>
                     </Modal>
@@ -211,18 +214,6 @@ class MyComponent extends React.Component {
             </View >
         );
     }
-}
 
 
-const mapStateToProps = (state) => {
-    return {
-        conta: state.conta
-    }
-}
 
-const mapDispatchToProps = { listConta }
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(MyComponent)

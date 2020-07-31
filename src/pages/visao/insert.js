@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
 
 import { TextInput, Button, Divider } from 'react-native-paper';
-import DatePicker from 'react-native-datepicker';
-import { View, Modal, TouchableHighlight, Text, Picker } from 'react-native';
+// import DatePicker from 'react-native-datepicker';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+
+import { View, Modal, TouchableHighlight, Text } from 'react-native';
 import { AntDesign, Feather } from '@expo/vector-icons';
 import { config, userID } from '../../components/auth'
 
@@ -20,7 +22,9 @@ export default (props) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [visao, setVisao] = useState('');
     const [dateInicio, setDateInicio] = useState(moment().format("DD-MM-YYYY"));
+    const [isDatePickerVisibleInicio, setisDatePickerVisibleInicio] = useState(false);
     const [dateFim, setDateFim] = useState(moment().format("DD-MM-YYYY"));
+    const [isDatePickerVisibleFim, setisDatePickerVisibleFim] = useState(false);
     const [loadingData, setLoadingData] = useState(false);
 
     const dispatch = useDispatch();
@@ -71,7 +75,23 @@ export default (props) => {
         setLoadingData(false)
     }
 
+    const hideDatePickerInicio = () => {
+        setisDatePickerVisibleInicio(false)
+    };
 
+    const handleConfirmInicio = (date) => {
+        setisDatePickerVisibleInicio(false)
+        setDateInicio(moment(date).format("DD-MM-YYYY"));
+    };
+
+    const hideDatePickerFim = () => {
+        setisDatePickerVisibleFim(false)
+    };
+
+    const handleConfirmFim = (date) => {
+        setisDatePickerVisibleFim(false)
+        setDateFim(moment(date).format("DD-MM-YYYY"));
+    };
     return (
         <View>
             <TouchableHighlight
@@ -127,37 +147,33 @@ export default (props) => {
                             marginTop: 15
                         }}>Data Inicio:</Text>
                         <Divider theme="dark" style={{ padding: 5 }} />
-                        <DatePicker
-                            style={style.datainsert}
-                            date={dateInicio}
-                            mode="date"
-                            placeholder="Data Inicio"
-                            format="DD-MM-YYYY"
-                            confirmBtnText="Confirm"
-                            cancelBtnText="Cancel"
-                            customStyles={{
-                                dateIcon: {
-                                    position: 'absolute',
-                                    left: 0,
-                                    top: 10,
-                                    marginLeft: 0
-                                },
-                                dateInput: {
-                                    backgroundColor: '#fff',
-                                    marginTop: 20,
-                                    marginLeft: 36,
-                                    height: 60,
 
-                                },
-                                dateText: {
-                                    fontSize: 20,
-                                    paddingLeft: 15,
-                                    width: '100%',
-                                    textAlign: 'left'
-                                }
-                            }}
-                            onDateChange={(date) => setDateInicio(date)}
-                        />
+                        <TouchableHighlight
+                                
+                                onPress={()=> setisDatePickerVisibleInicio(true)} 
+                                >
+                          <View style={style.icon}>
+                            <View style={{ width: '8%' }}>
+                                <AntDesign name="calendar" size={30} color="black" />
+                            </View>
+                            <View style={{ width: '90%' }}>
+                                <TextInput
+                                style={style.visaoInput}
+                                placeholder="Informe a Data Inicial da Visão"
+                                value={dateInicio}
+                                editable={false}
+                                onTouchStart={()=> setisDatePickerVisibleInicio(true)}
+                                />
+                            </View>
+                          </View>
+                         </TouchableHighlight>                           
+                            <DateTimePickerModal
+                                isVisible={isDatePickerVisibleInicio}   
+                                textColor='black'
+                                mode="date"
+                                onConfirm={handleConfirmInicio}
+                                onCancel={hideDatePickerInicio}
+                            />
 
                         <Text style={{
                             fontSize: 20,
@@ -166,37 +182,32 @@ export default (props) => {
                         }}>Data Fim:</Text>
                         <Divider theme="dark" style={{ padding: 5 }} />
 
-                        <DatePicker
-                            style={style.datainsert}
-                            date={dateFim}
-                            mode="date"
-                            placeholder="Data Fim"
-                            format="DD-MM-YYYY"
-                            confirmBtnText="Confirm"
-                            cancelBtnText="Cancel"
-                            customStyles={{
-                                dateIcon: {
-                                    position: 'absolute',
-                                    left: 0,
-                                    top: 10,
-                                    marginLeft: 0
-                                },
-                                dateInput: {
-                                    backgroundColor: '#fff',
-                                    marginTop: 20,
-                                    marginLeft: 36,
-                                    height: 60,
-
-                                },
-                                dateText: {
-                                    fontSize: 20,
-                                    paddingLeft: 15,
-                                    width: '100%',
-                                    textAlign: 'left'
-                                }
-                            }}
-                            onDateChange={(date) => setDateFim(date)}
-                        />
+                        <TouchableHighlight
+                                
+                                onPress={()=> setisDatePickerVisibleFim(true)} 
+                                >
+                          <View style={style.icon}>
+                            <View style={{ width: '8%' }}>
+                                <AntDesign name="calendar" size={30} color="black" />
+                            </View>
+                            <View style={{ width: '90%' }}>
+                                <TextInput
+                                style={style.visaoInput}
+                                placeholder="Informe a Data Final da Visão"
+                                value={dateFim}
+                                editable={false}
+                                onTouchStart={()=> setisDatePickerVisibleFim(true)}
+                                />
+                            </View>
+                          </View>
+                         </TouchableHighlight>                           
+                            <DateTimePickerModal
+                                isVisible={isDatePickerVisibleFim}   
+                                textColor='black'
+                                mode="date"
+                                onConfirm={handleConfirmFim}
+                                onCancel={hideDatePickerFim}
+                            />
 
 
                         <View style={style.botoesInsert}>
