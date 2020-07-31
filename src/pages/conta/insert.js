@@ -1,7 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import DatePicker from 'react-native-datepicker';
+
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { TextInput, Button, Divider } from 'react-native-paper';
 import { TextInputMask } from 'react-native-masked-text';
@@ -65,20 +65,13 @@ export default (props) => {
         setLoadingData(false)
     }
 
-
-    function showDatePicker() {
-        setisDatePickerVisible(true);
-    };
-
-    function hideDatePicker() {
+    const hideDatePicker = () => {
         setisDatePickerVisible(false)
     };
 
-    function handleConfirm(date) {
-        console.warn("A date has been picked: ", date);
-        const data = moment(date).format("DD-MM-YYYY")
-        setDate(data);
-        hideDatePicker();
+    const handleConfirm = (date) => {
+        setisDatePickerVisible(false)
+        setDate(moment(date).format("DD-MM-YYYY"));
     };
 
     return (
@@ -136,30 +129,39 @@ export default (props) => {
                         }}>Data Inicial</Text>
                         <Divider theme="dark" style={{ padding: 5 }} />
 
-                        <View>
-                            <TextInput
-                                    style={style.contaInput}
-                                    value={date}
-                                    placeholderTextColor='black'
-                                    label='Informe a data inicial'
-                                    onTouchStart={()=> showDatePicker()}
-                                    editable={false}/>
-
-                            <DateTimePickerModal
-
-                                isVisible={isDatePickerVisible}
-                                textColor='black'
-                                display='calendar'
-                                mode="date"
-                                onConfirm={date => handleConfirm(date)}
-                                onCancel={() => hideDatePicker()}
-                            />
+                       
+                         <TouchableHighlight
+                                
+                                onPress={()=> setisDatePickerVisible(true)} 
+                                >
+                                     <View style={style.icon}>
+                            <View style={{ width: '8%' }}>
+                                <AntDesign name="calendar" size={30} color="black" />
+                            </View>
+                            <View style={{ width: '90%' }}>
+                        <TextInput
+                           style={style.contaInput}
+                           placeholder="Informe a Data Inicial do Saldo"
+                           value={date}
+                           editable={false}
+                           onTouchStart={()=> setisDatePickerVisible(true)}
+                        />
                         </View>
-
+                        </View>
+                         </TouchableHighlight>                           
+                            <DateTimePickerModal
+                                isVisible={isDatePickerVisible}
+                                
+                                textColor='black'
+                                // display='calendar'
+                                mode="date"
+                                onConfirm={handleConfirm}
+                                onCancel={hideDatePicker}
+                            />
                         <Text style={{
                             fontSize: 20,
                             fontWeight: 'bold',
-                            marginTop: 35
+                            marginTop: 15
                         }}>Saldo Inicial</Text>
                         <Divider style={{ padding: 5 }} />
                         <View style={style.icon}>
