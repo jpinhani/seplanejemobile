@@ -79,6 +79,7 @@ export default (props) => {
             </View>
             <LoadingData data={loadingData} />
             <FlatList style={styles.container}
+                showsVerticalScrollIndicator={false}
                 data={SearchFilter(contaStore, ['DESCR_CONTA'], search)}
                 keyExtractor={contaStore => String(contaStore.ID)}
                 renderItem={({ item: conta }) => (

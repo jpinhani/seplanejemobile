@@ -11,6 +11,7 @@ web-build/
 web-report/
 services/*
 .env
+src/loading/*
 
 # macOS
 .DS_Store
