@@ -134,20 +134,20 @@ export default (props) => {
                                 
                                 onPress={()=> setisDatePickerVisible(true)} 
                                 >
-                                     <View style={style.icon}>
+                          <View style={style.icon}>
                             <View style={{ width: '8%' }}>
                                 <AntDesign name="calendar" size={30} color="black" />
                             </View>
                             <View style={{ width: '90%' }}>
-                        <TextInput
-                           style={style.contaInput}
-                           placeholder="Informe a Data Inicial do Saldo"
-                           value={date}
-                           editable={false}
-                           onTouchStart={()=> setisDatePickerVisible(true)}
-                        />
-                        </View>
-                        </View>
+                                <TextInput
+                                style={style.contaInput}
+                                placeholder="Informe a Data Inicial do Saldo"
+                                value={date}
+                                editable={false}
+                                onTouchStart={()=> setisDatePickerVisible(true)}
+                                />
+                            </View>
+                          </View>
                          </TouchableHighlight>                           
                             <DateTimePickerModal
                                 isVisible={isDatePickerVisible}

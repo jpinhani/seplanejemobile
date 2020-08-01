@@ -41,6 +41,7 @@ export default StyleSheet.create({
     },
     flatRows2: {
         flexDirection: 'row',
+        alignItems:`center`
     },
     gridButtons: {
         paddingLeft: 20,

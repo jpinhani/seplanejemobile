@@ -91,7 +91,7 @@ export default (props) => {
                             </View>
                             <Text style={styles.value}>{conta.DESCR_CONTA}</Text>
                             <Divider style={{ padding: 3 }} />
-                            <View style={{ flexDirection: 'row' }}>
+                            <View style={{ flexDirection: 'row',alignItems:`center` }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                     <Feather name="calendar"
                                         size={30} color="black" />
@@ -100,7 +100,7 @@ export default (props) => {
                                 <Text style={styles.value}>{moment(conta.DTSALDO).format("DD/MM/YYYY")}</Text>
                             </View>
                             <Divider style={{ padding: 3 }} />
-                            <View style={{ flexDirection: 'row' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center'  }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                     <Feather name="dollar-sign"
                                         size={30} color="black" />

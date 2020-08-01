@@ -23,6 +23,7 @@ export default StyleSheet.create({
     value: {
         fontSize: 16,
         paddingVertical: 1,
+        paddingLeft: 5,
         color: 'blue',
     },
     details: {

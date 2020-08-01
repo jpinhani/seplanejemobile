@@ -41,6 +41,7 @@ export default StyleSheet.create({
     },
     flatRows2: {
         flexDirection: 'row',
+        alignItems:`center`
     },
     gridButtons: {
         paddingLeft: 20,
@@ -54,7 +55,9 @@ export default StyleSheet.create({
     modal: {
         backgroundColor: '#ADD8E6',
         height: '100%',
+        width: '100%',
         flexDirection: 'column',
+        // flexWrap: "wrap",
         paddingTop: '25%',
         paddingHorizontal: 15,
         alignSelf: 'stretch',
@@ -92,4 +95,17 @@ export default StyleSheet.create({
         color: 'blue',
         width: '50%'
     },
+    modalcompra:{
+        flexDirection:`row`,
+        width: `100%`,
+        flexWrap: "wrap"
+    },
+    flatlistModal:{
+        flexDirection:`row`,
+        flexWrap: "wrap",
+        marginHorizontal: 15
+        // backgroundColor:"blue",
+        // width: `33%`,
+        // flexWrap: "wrap"
+    }
 })
