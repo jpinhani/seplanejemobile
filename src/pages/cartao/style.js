@@ -50,6 +50,7 @@ export default StyleSheet.create({
     },
     modal1: {
         backgroundColor: 'black',
+        // height:"100vh",
         shadowColor: "#000",
     },
     modal: {
@@ -78,6 +79,7 @@ export default StyleSheet.create({
         width: '90%',
         height: 55,
         backgroundColor: '#fff',
+        fontSize: 20,
         marginLeft: 8,
     },
     botoesInsert: {
@@ -98,14 +100,12 @@ export default StyleSheet.create({
     modalcompra:{
         flexDirection:`row`,
         width: `100%`,
-        flexWrap: "wrap"
+        flexWrap: "wrap",
+        height:"100%"
     },
     flatlistModal:{
         flexDirection:`row`,
         flexWrap: "wrap",
-        marginHorizontal: 15
-        // backgroundColor:"blue",
-        // width: `33%`,
-        // flexWrap: "wrap"
+        justifyContent: "center"
     }
 })
