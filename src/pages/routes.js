@@ -15,7 +15,7 @@ import Conta from './conta';
 import Visao from './visao';
 import Loading from './loading';
 // import loading from './loading';
-
+import DespesaMeta from './despesaPrevista';
 
 const AppDrawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -97,7 +97,7 @@ function drawerMain() {
                             <Feather name="calendar" size={25} color="black" />
                     }} />
 
-                <AppDrawer.Screen name='Meta Despesa' component={Visao}
+                <AppDrawer.Screen name='Meta Despesa' component={DespesaMeta}
                     options={{
                         drawerIcon: config =>
                             // <Icon size={23} name='home' />
