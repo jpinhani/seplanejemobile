@@ -15,6 +15,7 @@ import Conta from './conta';
 import Visao from './visao';
 import Loading from './loading';
 // import loading from './loading';
+import ReceitaMeta from './receitaPrevista';
 
 
 const AppDrawer = createDrawerNavigator();
@@ -104,7 +105,7 @@ function drawerMain() {
                             <Feather name="thumbs-down" size={25} color="red" />
                     }} />
 
-                <AppDrawer.Screen name='Meta Receita' component={Visao}
+                <AppDrawer.Screen name='Meta Receita' component={ReceitaMeta}
                     options={{
                         drawerIcon: config =>
                             // <Icon size={23} name='home' />
