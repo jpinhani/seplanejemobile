@@ -84,6 +84,7 @@ export default (props) => {
             </View>
             <LoadingData data={loadingData} />
             <FlatList style={style.container}
+               showsVerticalScrollIndicator={false}
                 data={SearchFilter(visaoStore, ['VISAO'], search)}
                 keyExtractor={visaoStore => String(visaoStore.ID)}
                 renderItem={({ item: visao }) => (

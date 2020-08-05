@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
 
 import { TextInput, Button, Divider } from 'react-native-paper';
-import { View, Modal, TouchableHighlight, Text, Picker ,ScrollView} from 'react-native';
+import { View, Modal, TouchableHighlight, Text ,ScrollView} from 'react-native';
 import { AntDesign, Feather } from '@expo/vector-icons';
 import { config, userID } from '../../components/auth'
 import api from '../../services/api';
