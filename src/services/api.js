@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const api = axios.create({
 <<<<<<< HEAD
-    baseURL: 'http://192.168.0.101:8082'
+    baseURL: 'http://192.168.0.102:8082'
     //baseURL: process.env.SP_URL
 
 =======
