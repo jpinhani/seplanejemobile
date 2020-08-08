@@ -12,6 +12,8 @@ web-report/
 services/*
 .env
 src/loading/*
+services/*
+src/pages/loading/*
 
 # macOS
 .DS_Store

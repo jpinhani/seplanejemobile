@@ -13,8 +13,6 @@ import LoadingData from './../../components/loadingData'
 
 export default () => {
 
-    /* Teste */
-
     const [user, setUser] = useState("jp.inhani@hotmail.com")
     const [psw, setPsw] = useState("909710")
     const [loadingData, setLoadingData] = useState(false)
