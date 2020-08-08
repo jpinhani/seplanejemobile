@@ -9,10 +9,9 @@ npm-debug.*
 *.orig.*
 web-build/
 web-report/
-services/*
 .env
-src/services/
-src/pages/loading/
+src/services/api.js
+src/pages/loading/index.js
 
 # macOS
 .DS_Store
