@@ -2,11 +2,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { TextInput, Button, Divider } from 'react-native-paper';
-<<<<<<< HEAD
 import { View, Modal, TouchableHighlight, Text, Picker, ScrollView } from 'react-native';
-=======
-import { View, Modal, TouchableHighlight, Text, Picker ,ScrollView} from 'react-native';
->>>>>>> 782eeb1bcf6036f419215c66e2991b2844664822
 import { AntDesign, Feather } from '@expo/vector-icons';
 import { config, userID } from '../../components/auth'
 import api from '../../services/api';
@@ -22,9 +18,6 @@ export default (props) => {
     const [diaCompra, setDiaCompra] = useState(`${props.data.DIA_COMPRA}`);
     const [diaVencimento, setDiaVencimento] = useState(`${props.data.DT_VENCIMENTO}`);
     const [loadingData, setLoadingData] = useState(false);
-    const [modalcompra, setModalCompra] = useState(false);
-
-    const [VetorDiasCompra, setVetorDiasCompra] = useState([]);
     const [modalcompra, setModalCompra] = useState(false);
     const [modalvencimento, setModalVencimento] = useState(false);
 
@@ -88,13 +81,10 @@ export default (props) => {
         setModalCompra(false)
     }
 
-<<<<<<< HEAD
-=======
     function handleDiaVencimento(dia){
         setDiaVencimento(String(dia))
         setModalVencimento(false)
     }
->>>>>>> 782eeb1bcf6036f419215c66e2991b2844664822
 
     return (
         <View>
@@ -156,17 +146,13 @@ export default (props) => {
                                 <AntDesign name="pushpino" size={30} color="black" />
                             </View>
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 782eeb1bcf6036f419215c66e2991b2844664822
                             <TouchableHighlight
                                style={style.Listvencimento}
                                onPress={()=>{
                                 vetorcompra()
                                 setModalCompra(true)}
                                 }
-<<<<<<< HEAD
                           > <TextInput
                           style={{backgroundColor:"#fff",fontSize:20}}
                            value={diaCompra}
@@ -178,25 +164,8 @@ export default (props) => {
                            editable={false}/>
                            </TouchableHighlight>
                         </View>
-                           <Modal
-=======
-                          >
-
-                            <TextInput
-                                   style={{backgroundColor:"#fff",fontSize:20}}
-                                    value={diaCompra}
-                                    placeholderTextColor='black'
-                                    label='Informe o dia de Melhor Compra'
-                                    onTouchStart={()=>{
-                                        vetorcompra()
-                                        setModalCompra(true)}}
-                                    editable={false}/>
-
-                          </TouchableHighlight>
-                        </View>
                         
                         <Modal
->>>>>>> 782eeb1bcf6036f419215c66e2991b2844664822
                               animationType={'slide'}
                               transparent={false}
                               visible={modalcompra}
@@ -237,11 +206,8 @@ export default (props) => {
                                   </View>
                                </ScrollView>
                         </Modal>
-<<<<<<< HEAD
 
                         
-=======
->>>>>>> 782eeb1bcf6036f419215c66e2991b2844664822
 
                         <Text style={{
                             fontSize: 20,

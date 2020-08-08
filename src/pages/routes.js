@@ -15,12 +15,9 @@ import Conta from './conta';
 import Visao from './visao';
 import Loading from './loading';
 // import loading from './loading';
-<<<<<<< HEAD
 import ReceitaMeta from './receitaPrevista';
 
-=======
 import DespesaMeta from './despesaPrevista';
->>>>>>> 782eeb1bcf6036f419215c66e2991b2844664822
 
 const AppDrawer = createDrawerNavigator();
 const Stack = createStackNavigator();
