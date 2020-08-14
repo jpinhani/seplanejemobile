@@ -10,8 +10,8 @@ npm-debug.*
 web-build/
 web-report/
 .env
-src/services/api.js
-src/pages/loading/index.js
+src/services/*
+src/pages/loading/*
 
 # macOS
 .DS_Store

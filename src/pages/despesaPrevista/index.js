@@ -1,13 +1,21 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 import {useDispatch,useSelector} from 'react-redux';
-import { Text, FlatList, View } from 'react-native';
+import { Text, FlatList, View,TouchableOpacity } from 'react-native';
+import { DrawerActions } from '@react-navigation/native';
+import SearchFilter from './../../components/searchList';
+import {Divider,Searchbar} from 'react-native-paper';
+import { Feather,AntDesign,Entypo } from '@expo/vector-icons';
 import { config, userID } from './../../components/auth';
+import moment from 'moment';
 import api from './../../services/api';
 
-export default () => {
+import  style from './style.js';
+
+export default (props) => {
     
     const dispatch = useDispatch();
     const despesaData = useSelector(state => state.despesaprevista);
+    const [search, setSearch] = useState('');
 
      async function requestapi(){
           const token = await config();
@@ -26,19 +34,84 @@ export default () => {
     },[requestapi])
 
     return(
-        <View>
-            <Text>Teste de Despesa Prevista</Text>
+        <View style={style.container}>
+            <View style={style.novoDespesa}>
+                <View>
+                    <AntDesign name="menufold" onPress={() => { props.navigation.dispatch(DrawerActions.toggleDrawer()); }}
+                        size={50} color="black" />
+                </View>
+                <View style={{ paddingLeft: 20 }}>
+                    <AntDesign name="pluscircle" size={50} color="blue" />
+                </View>
+            </View>
+            <View style={style.searchbar}>
+               <Searchbar
+                    style={{ backgroundColor: '#FFFAFA' }}
+                    placeholder="Buscar Despesas Previstas"
+                    value={search}
+                    onChangeText={filtro => setSearch(filtro)}
+                />
+            </View> 
             <FlatList
                 showsVerticalScrollIndicator={false}
-                data={despesaData}
+                data={SearchFilter(despesaData,['DESCR_DESPESA','DESCR_CATEGORIA'],search) }
                 keyExtractor={despesaData => String(despesaData.ID)}
                 renderItem={({ item: despesaMeta }) => (
-                    <View>
-                        <Text>{despesaMeta.DESCR_DESPESA}</Text>
-                        <Text>{despesaMeta.DT_PREVISTO}</Text>
-                        <Text>{despesaMeta.VL_PREVISTO}</Text>
-                        <Text>{despesaMeta.DESCR_CATEGORIA}</Text>
-                    </View>
+                    <View style={style.flatlistcontainer}> 
+                      <View style={style.flatlistdescription}>
+                          <View style={style.containerdescription}>
+                             <AntDesign name='profile' size={35}/>
+                             <Text  style={style.type}>Descrição:</Text>
+                          </View>   
+                        <Text  style={style.detail}>{despesaMeta.DESCR_DESPESA}</Text>
+                        <Divider style={{padding: 1.5}}/>
+                      </View>
+                      
+                    <View style={style.flatlistitenscontainer}>  
+                            <View style={style.flatlistitens}>
+                                <View style={style.containerdescription}>
+                                    <AntDesign name='switcher' size={35}/>
+                                    <Text  style={style.type}>Categoria:</Text>
+                                </View>
+                                <Text  style={style.detail}>{despesaMeta.DESCR_CATEGORIA}</Text>
+                                <Divider style={{padding: 1.5}}/>
+                                <View style={style.containerdescription}>
+                                    <Feather name='credit-card' size={35}/>
+                                    <Text  style={style.type}>Cartão:</Text>
+                                </View>
+                                <Text  style={style.detail}>{despesaMeta.CARTAO ?
+                                                            despesaMeta.CARTAO :
+                                                            "A VISTA"}</Text>
+                                <Divider style={{padding: 1.5}}/>
+                                <View style={style.datandvalue}>
+                                    <View style={style.datandvaluedetail}>
+                                            <View style={style.containerdescription}>
+                                                    <Feather name='calendar' size={35}/>
+                                                    <Text  style={style.type}>Data Prevista:</Text>
+                                            </View>
+                                            <Text  style={style.detail}>{moment(despesaMeta.DT_PREVISTO).format("DD-MM-YYYY")}</Text>
+                                    </View>
+
+                                    <View style={style.datandvaluedetail}>
+                                             <View style={style.containerdescription}>
+                                                    <Entypo name='credit' size={35}/>
+                                                    <Text  style={style.type}>Previsto:</Text>
+                                             </View>
+                                            <Text  style={style.detail}>{despesaMeta.VL_PREVISTO}</Text>
+                                    </View>
+                                </View>
+                            </View>
+                   
+                            <View style={style.flatlisticons}>
+
+                                <Feather style={style.iconelist} name="edit" size={35} color="blue" />
+                                
+                                <TouchableOpacity>
+                                    <Feather style={style.iconelist} name="delete" size={35} color="#E02041" />
+                                </TouchableOpacity>
+                            </View>
+                   </View>
+                  </View>
                 )}
             />
          </View>
