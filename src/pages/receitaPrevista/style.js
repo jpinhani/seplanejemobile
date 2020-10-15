@@ -16,7 +16,8 @@ export default StyleSheet.create({
     },
     containerdescription:{
         flexDirection:'row',
-        alignItems:'center'
+        alignItems:'center',
+        paddingLeft: 8
     },
     flatlistdescription:{
         flexDirection:"column",
@@ -99,5 +100,20 @@ export default StyleSheet.create({
         backgroundColor: '#fff',
         fontSize: 20,
         marginLeft: 8,
-    }
+    },
+    botoesInsert: {
+        justifyContent: 'space-between',
+        marginVertical: 30,
+        flexDirection: 'row',
+    },
+    bregistrar: {
+        backgroundColor: 'blue',
+        color: 'blue',
+        width: '50%'
+    },
+    bcancelar: {
+        tintColor: 'blue',
+        color: 'blue',
+        width: '50%'
+    },
 })   

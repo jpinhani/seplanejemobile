@@ -3,16 +3,19 @@ import {View, Modal,TouchableHighlight, Text } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import {AntDesign, Feather} from '@expo/vector-icons';
-import {Button, TextInput} from 'react-native-paper';
+import {Button, TextInput, Divider} from 'react-native-paper';
 import { TextInputMask } from 'react-native-masked-text';
 import moment from 'moment';
 import style from './style';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default () =>{
     const [visiblemodal, setVisibleModal] = useState(false)
     const [isDatePickerVisible, setisDatePickerVisible] = useState(false)
     const [date, setDate] = useState(moment().format("DD-MM-YYYY"));
     const [saldo, setSaldo] = useState('0');
+
+    
 
       
     const hideDatePicker = () => {
@@ -42,6 +45,7 @@ export default () =>{
                 animated = {'slide'}
                 visible={visiblemodal}  
              >
+                 <ScrollView>
                  <View style = {style.modal}>
                        <View>
                         <Text style={{
@@ -50,16 +54,21 @@ export default () =>{
                             color: 'red'
                         }}>Se<Text style={{
                             fontSize: 28,
-                            color: '#ffff',
+                            color: 'white',
                         }}>Planeje</Text></Text>
                         </View>
-                        <Text>Data Prevista</Text>
+                        <Text style={{
+                            fontSize: 20,
+                            fontWeight: 'bold',
+
+                        }}>Data Prevista</Text>
+                        <Divider theme="dark" style={{ padding: 3, marginBottom: 5}} /> 
                         <TouchableHighlight
                                 
                                 onPress={()=> setisDatePickerVisible(true)} 
                                 >
                           <View style={style.icon}>
-                            <View style={{ width: '8%' }}>
+                            <View style={{ width: '9%' }}>
                                 <AntDesign name="calendar" size={30} color="black" />
                             </View>
                             <View style={{ width: '90%' }}>
@@ -82,8 +91,13 @@ export default () =>{
                                 onConfirm={handleConfirm}
                                 onCancel={hideDatePicker}
                             />
-                        <Text>Valor Previsto</Text>
-                        <View style={style.icon}>
+                        <Text style={{
+                            fontSize: 20,
+                            fontWeight: 'bold',
+
+                        }}>Valor Previsto</Text>
+                        <Divider theme="dark" style={{ padding: 3, marginBottom: 5}} />
+                            <View style={style.icon}>
                             <View style={{ width: '8%' }}>
                                 <Feather name="dollar-sign" size={30} color="black" />
                             </View>
@@ -109,15 +123,72 @@ export default () =>{
                                 />
                             </View>
                         </View>
-                        <Text>Categoria</Text>
-                        <TextInput/>
-                        <Text>N. Parcelas</Text>
-                        <TextInput/>
-                        <Text>Descrição</Text>
-                        <TextInput/>
-                        <Button 
-                        onPress ={() => setVisibleModal(false)}>Teste Sair</Button>
+ 
+
+                        <Text style={{
+                            fontSize: 20,
+                            fontWeight: 'bold',
+
+                        }}>Categoria</Text>
+                        <Divider theme="dark" style={{ padding: 3, marginBottm: 5}} />
+                        <View style={style.icon}>
+                            <View style={{ width: '8%'}}>
+                                <Feather name="flag" size={30} color="black" />
+                            </View>
+                            <View style={{ width: '90%'}}>
+                                <TextInput style={style.saldo}/>
+                            </View>
+                        </View>
+                        
+                        <Text style={{
+                            fontSize: 20,
+                            fontWeight: 'bold',
+
+                        }}>N. Parcelas</Text>
+                        <Divider theme="dark" style={{ padding: 3, marginBottom: 5}} />
+                        <View style={style.icon}>
+                            <View style={{ width: '9%'}}>
+                                <Feather name="server" size={30} color="black" />
+                            </View>  
+                            <View style={{ width: "90%"}}>
+                                <TextInput style={style.saldo}/>
+                            </View>  
+                        </View>
+
+                        <Text style={{
+                            fontSize: 20,
+                            fontWeight: 'bold',
+
+                        }}>Descrição</Text>
+                        <Divider theme="dark" style={{ padding: 3, marginBottom: 5}} />
+                        <View style={style.icon}>
+                            <View style={{ width: '8%'}}>
+                                <AntDesign name="copy1" size={30} color="black" />
+                            </View>
+                            <View style={{ width: '90%'}}>
+                                <TextInput style={style.saldo}/>
+                            </View>
+                        </View>
+                        
+
+                        <View style={style.botoesInsert}>
+                         <Button
+                            style={style.bregistrar}
+                            mode='contained'
+                            icon='send'
+                            color='blue'
+                            contentStyle={{ height: 50}}
+                            onPress={() => handleSubmit()}>Inserir</Button>
+                         <Button
+                            style={style.bcancelar}
+                            icon='logout'
+                            mode='outlined'
+                            color='blue'
+                            contentStyle={{ height: 50}}
+                            onPress={() => setVisibleModal(false)}>Sair</Button>
+                        </View>
                       </View> 
+                </ScrollView>     
              </Modal>
            </View>
        </View>

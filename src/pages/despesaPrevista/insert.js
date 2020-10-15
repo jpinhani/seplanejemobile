@@ -61,7 +61,7 @@ export default (props) => {
                                 onPress={()=> setisDatePickerVisible(true)} 
                                 >
                           <View style={style.icon}>
-                            <View style={{ width: '8%' }}>
+                            <View style={{ width: '9%' }}>
                                 <AntDesign name="calendar" size={30} color="black" />
                             </View>
                             <View style={{ width: '90%' }}>
@@ -141,7 +141,7 @@ export default (props) => {
                         </Text>
                         <Divider theme="dark" style={{ padding: 3, marginBottom:5 }} />
                         <View style={style.icon}>
-                            <View style={{ width: '8%' }}>
+                            <View style={{ width: '9%' }}>
                                 <Feather name="credit-card" size={28} color="black" />
                             </View>
                             <View style={{ width: '90%' }}>
@@ -156,7 +156,7 @@ export default (props) => {
                         }}>N. Parcelas</Text>
                         <Divider theme="dark" style={{ padding: 3, marginBottom:5 }} />
                             <View style={style.icon}>
-                            <View style={{ width: '8%' }}>
+                            <View style={{ width: '9%' }}>
                                 <Feather name="server" size={30} color="black" />
                             </View>
                             <View style={{ width: '90%' }}>
