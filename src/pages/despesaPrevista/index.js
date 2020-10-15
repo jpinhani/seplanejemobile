@@ -6,6 +6,7 @@ import SearchFilter from './../../components/searchList';
 import {Divider,Searchbar} from 'react-native-paper';
 import { Feather,AntDesign,Entypo } from '@expo/vector-icons';
 import { config, userID } from './../../components/auth';
+import InsertDespesa from './insert';
 import moment from 'moment';
 import api from './../../services/api';
 
@@ -29,6 +30,10 @@ export default (props) => {
         
      }
 
+     function formataDinheiro(n) {
+        return "R$ " + n.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+    }
+
     useEffect(()=>{
         requestapi();
     },[requestapi])
@@ -41,7 +46,8 @@ export default (props) => {
                         size={50} color="black" />
                 </View>
                 <View style={{ paddingLeft: 20 }}>
-                    <AntDesign name="pluscircle" size={50} color="blue" />
+                    <InsertDespesa/>
+                    {/* <AntDesign name="pluscircle" size={50} color="blue" /> */}
                 </View>
             </View>
             <View style={style.searchbar}>
@@ -97,7 +103,7 @@ export default (props) => {
                                                     <Entypo name='credit' size={35}/>
                                                     <Text  style={style.type}>Previsto:</Text>
                                              </View>
-                                            <Text  style={style.detail}>{despesaMeta.VL_PREVISTO}</Text>
+                                            <Text  style={style.detail}>{formataDinheiro(despesaMeta.VL_PREVISTO2)}</Text>
                                     </View>
                                 </View>
                             </View>
@@ -106,7 +112,8 @@ export default (props) => {
 
                                 <Feather style={style.iconelist} name="edit" size={35} color="blue" />
                                 
-                                <TouchableOpacity>
+                                <TouchableOpacity
+                                     onPress={()=> alert("Teste Fabiano")}>
                                     <Feather style={style.iconelist} name="delete" size={35} color="#E02041" />
                                 </TouchableOpacity>
                             </View>

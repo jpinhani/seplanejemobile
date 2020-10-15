@@ -10,11 +10,7 @@ npm-debug.*
 web-build/
 web-report/
 .env
-<<<<<<< HEAD
 src/services/*
-=======
-src/pages/services/*
->>>>>>> 4760bb79f1cfe168226c0e1d6fa44bbe4fb8343f
 src/pages/loading/*
 
 # macOS

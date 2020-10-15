@@ -81,7 +81,7 @@ export default (props) => {
                 />
             </View>
             <LoadingData data={loadingData} />
-            <FlatList style={style.container}
+            <FlatList style={style.container}   
                 showsVerticalScrollIndicator={false}
                 data={SearchFilter(cartaoStore, ['CARTAO'], search)}
                 keyExtractor={cartaoStore => String(cartaoStore.ID)}

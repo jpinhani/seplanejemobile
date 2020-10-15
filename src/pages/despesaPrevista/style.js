@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 
+
 export default StyleSheet.create({
     container:{
         marginHorizontal: 20,
@@ -68,5 +69,63 @@ export default StyleSheet.create({
     searchbar:{
         marginTop: 10,
         marginBottom: 15
-    }
+    },
+    modal1: {
+        backgroundColor: 'black',
+        // height:100%,
+        shadowColor: "#000",
+    },
+    modal: {
+        backgroundColor: '#ADD8E6',
+        // height: '100%',
+        width: '100%',
+        flexDirection: 'column',
+        // flexWrap: "wrap",
+        paddingTop: '25%',
+        paddingHorizontal: 15,
+        alignSelf: 'stretch',
+    },
+    icon: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent:'space-between',
+        alignItems: 'center'
+    },
+    dateInput:
+    {
+        width: '100%',
+        backgroundColor: '#fff',
+        fontSize: 20,
+        marginLeft: 8,
+    },
+    despesaInput:
+    {
+        width: '100%',
+        backgroundColor: '#fff',
+        fontSize: 20,
+        marginLeft: 8,
+    },
+    saldo: {
+        backgroundColor: '#fff',
+        height: 60,
+        width: '100%',
+        paddingLeft: 15,
+        fontSize: 20,
+        marginLeft: 8,
+    },
+    botoesInsert: {
+        justifyContent: 'space-between',
+        marginVertical: 30,
+        flexDirection: 'row',
+    },
+    bregistrar: {
+        backgroundColor: 'blue',
+        color: 'blue',
+        width: '50%'
+    },
+    bcancelar: {
+        tintColor: 'blue',
+        color: 'blue',
+        width: '50%'
+    },
 })
