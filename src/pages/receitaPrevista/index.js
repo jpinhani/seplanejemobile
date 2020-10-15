@@ -8,6 +8,7 @@ import { Feather, AntDesign, Entypo } from '@expo/vector-icons';
 import { config, userID } from './../../components/auth';
 import moment from 'moment';
 import api from './../../services/api';
+import Addreceita from './insert'
 
 import style from './style.js';
 
@@ -42,7 +43,7 @@ export default (props) => {
                         size={50} color="black" />
                 </View>
                 <View style={{ paddingLeft: 20 }}>
-                    <AntDesign name="pluscircle" size={50} color="blue" />
+                    <Addreceita/>
                 </View>
             </View>     
               <View style={style.searchbar}>
