@@ -280,7 +280,7 @@ export default (props) => {
                                         </View>
                             </View>
                         </ScrollView>
-                    </Modal>
+                     </Modal>
 
                         <View style={style.botoesInsert}>
                             <Button
